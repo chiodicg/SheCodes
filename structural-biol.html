@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Structural Biology</title>
+    <style>
+      h1 {
+        color: rgb(0, 97, 153);
+        font-family: monospace;
+        font-size: 5vmin;
+        max-height: 100px;
+        line-height: 100px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      h2 {
+        color: rgb(0, 103, 163);
+        font-family: monospace;
+        font-size: 3.5vmin;
+        text-align: center;
+      }
+      h3 {
+        color: rgb(1, 117, 184);
+        font-family: monospace;
+        font-size: 3vmin;
+        margin: 16px auto;
+        text-align: center;
+      }
+      h4 {
+        color: rgb(1, 117, 184);
+        font-family: monospace;
+        font-size: 2.5vmin;
+        text-align: center;
+      }
+      p {
+        font-family: monospace;
+        font-size: 1.9vmin;
+        line-height: 1.5;
+        text-align: justify;
+        text-indent: 2em;
+      }
+      button {
+        background-color: rgba(1, 117, 184, 0.8);
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        color: white;
+        display: block;
+        font-size: 2.3vmin;
+        font-family: monospace;
+        margin: 10px auto;
+        padding: 20px 35px;
+        transition: all 200ms ease-in-out;
+      }
+      button:hover {
+        opacity: 0.9;
+      }
+      span {
+        font-weight: 800;
+      }
+      .title-image {
+        vertical-align: middle;
+        display: inline;
+        max-width: 100px;
+      }
+      footer {
+        font-family: monospace;
+        font-size: 1.8vmin;
+        text-align: center;
+        margin: 30px auto 20px;
+      }
+      a {
+        color: rgb(22, 136, 202);
+        text-decoration: none;
+      }
+      a:visited {
+        color: rgb(22, 136, 202);
+      }
+      ul {
+        font-family: monospace;
+        line-height: 1.3;
+      }
+      .content {
+        background: linear-gradient(45deg, rgba(191, 224, 240, 0.8), white);
+        margin: 0;
+        padding: 10px 50px;
+        min-width: 400px;
+      }
+      .explanation {
+        background-color: rgba(155, 209, 236, 0.3);
+        border: 2px solid rgba(191, 224, 240, 1);
+        border-radius: 10px;
+        padding: 20px 40px;
+      }
+      .methods {
+        text-align: center;
+        margin: 0 auto;
+      }
+      .xtal {
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+      }
+      .nmr {
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+      }
+      .cryoEM {
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+        transition: all 2s ease-in-out;
+      }
+
+      .linkCryoEM {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .methodEM {
+        display: inline-block;
+        position: relative;
+        margin: 0 20px;
+      }
+      .overlayEM {
+        background-color: white;
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+        bottom: 4px;
+        right: 0;
+        height: 125px;
+        width: 125px;
+        opacity: 0;
+        position: absolute;
+        transition: all 300ms ease-in-out;
+      }
+      .methodEM:hover .overlayEM {
+        opacity: 0.8;
+      }
+      .overlayTextEM {
+        color: rgb(1, 117, 184);
+        font-family: monospace;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .overlayXtal {
+        background-color: white;
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+        bottom: 4px;
+        right: 0px;
+        height: 125px;
+        width: 125px;
+        opacity: 0;
+        position: absolute;
+        transition: all 300ms ease-in-out;
+      }
+      .methodXtal {
+        display: inline-block;
+        position: relative;
+        margin: 0 20px;
+      }
+      .linkXtal {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .methodXtal:hover .overlayXtal {
+        opacity: 0.8;
+      }
+      .overlayTextXtal {
+        color: rgb(1, 117, 184);
+        font-family: monospace;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .overlayNMR {
+        background-color: white;
+        border: 2px solid rgba(1, 117, 184, 1);
+        border-radius: 4px;
+        bottom: 4px;
+        right: 0;
+        height: 125px;
+        width: 125px;
+        opacity: 0;
+        position: absolute;
+        transition: all 300ms ease-in-out;
+      }
+      .methodNMR {
+        display: inline-block;
+        position: relative;
+        margin: 0 20px;
+      }
+
+      .methodNMR:hover .overlayNMR {
+        opacity: 0.8;
+      }
+      .linkNMR {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .overlayTextNMR {
+        color: rgb(1, 117, 184);
+        font-family: monospace;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>
+        Structural Biology
+        <img
+          src="https://www.diamond.ac.uk/.imaging/mte/diamond-lite-lm-theme/wowsliderSmall/dam/moved_uploaded/industry/Techniques-Available/Integrated-Structural-Biology/base/0/coot_6/jcr:content/coot_6.png"
+          alt="protein helices and coils inside electron density maps"
+          class="title-image"
+        />
+      </h1>
+      <div class="explanation">
+        <h2>Characterization of Protein Structures</h2>
+        <p>
+          <span class="keywords">Structural biology</span> is the study of the
+          structure of biological molecules, such as proteins.
+        </p>
+        <h4>
+          <em>What are proteins and why their structure is important?</em><br />
+        </h4>
+        <p>
+          <span class="keywords">Proteins</span> are macromolecules formed by
+          several amino acids in a chain. Despite being a chain, they can adopt
+          <span class="keywords">different shapes/structures</span> that will
+          impact on the protein
+          <span class="keywords">biological function</span>.
+        </p>
+        <p>
+          <span class="keywords">Structural biology</span> is a field widely
+          used in academia and pharmaceutical industries. It makes possible for
+          scientists to investigate:
+        </p>
+        <ul>
+          <li>the atomic arrangement of the amino acids;</li>
+          <li>the relationship of structure and function;</li>
+          <li>
+            how ligands interact with the proteins and the conformational
+            changes;
+          </li>
+          <li>how to improve drug design.</li>
+        </ul>
+        <br />
+        <hr />
+        <br />
+        <h3>Methods</h3>
+        <p>
+          The most common methods for characterizing protein structures are:
+        </p>
+        <div class="methods">
+          <div class="methodEM">
+            <a
+              href="https://en.wikipedia.org/wiki/Cryogenic_electron_microscopy"
+              target="_blank"
+              class="linkCryoEM"
+            >
+              <img
+                src="https://ars.els-cdn.com/content/image/1-s2.0-S0092867419303927-fx1.jpg"
+                alt="representative image of cryoEM"
+                width="125px"
+                height="125px"
+                class="cryoEM"
+              />
+              <div class="overlayEM">
+                <div class="overlayTextEM"><strong>Cryo-EM</strong></div>
+              </div>
+            </a>
+          </div>
+          <div class="methodXtal">
+            <a
+              href="https://en.wikipedia.org/wiki/X-ray_crystallography"
+              target="_blank"
+              class="linkXtal"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR0Xmupv1suW7auxiPHLpsZIiHtyF4O1NALlg&usqp=CAU"
+                alt="protein crystals"
+                width="125px"
+                height="125px"
+                class="xtal"
+              />
+              <div class="overlayXtal">
+                <div class="overlayTextXtal"><strong>X-ray</strong></div>
+              </div>
+            </a>
+          </div>
+          <div class="methodNMR">
+            <a
+              href="https://en.wikipedia.org/wiki/Nuclear_magnetic_resonance_spectroscopy_of_proteins"
+              target="_blank"
+              class="linkNMR"
+            >
+              <img
+                src="https://www.researchgate.net/profile/Gaetano_Montelione/publication/294422856/figure/fig5/AS:545148100255744@1506984843065/NMR-structure-of-Top7-PC-A-Left-NMR-structure-ensemble-disulfide-shown-as-sticks.png"
+                alt="represetative image of protein NMR"
+                height="125px"
+                width="125px"
+                class="nmr"
+              />
+              <div class="overlayNMR">
+                <div class="overlayTextNMR"><strong>NMR</strong></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <p>Click on the images to learn more about them.📖</p>
+        <br />
+        <button>
+          Find out which method is suitable<br />according to protein size
+        </button>
+      </div>
+      <footer>
+        This
+        <a
+          href="https://gist.github.com/chiodicg/dd59489a62c43531a5d8b949572c79e0"
+          target="_blank"
+          >page</a
+        >
+        was built by
+        <a
+          href="https://www.linkedin.com/in/carla-gottschald-chiodi-5bb811172/"
+          target="_blank"
+          >Carla Gottschald Chiodi</a
+        >
+      </footer>
+    </div>
+    <script>
+      function findMethod() {
+        let size = prompt("What's the size of the protein in kDa?");
+        if (size <= 30) {
+          alert(
+            "Either crystallography or NMR are suitable for this protein size."
+          );
+        } else if (size > 30 && size < 150) {
+          alert(
+            "Crystallography is a suitable method. Cryo-EM may be an option as well."
+          );
+        } else {
+          alert(
+            "Either crystallography or cryo-EM are suitable for this protein size."
+          );
+        }
+      }
+      let methodButton = document.querySelector("button");
+      methodButton.addEventListener("click", findMethod);
+    </script>
+  </body>
+</html>
